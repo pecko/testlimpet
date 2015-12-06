@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Limpet Data Analysis"
+            id="info.limpet.rcp">
+      </category>
+      <view
+            allowMultiple="true"
+            name="Analysis View"
+            icon="icons/overview.png"
+            category="info.limpet.rcp"
+            class="info.limpet.rcp.analysis_view.AnalysisView"
+            id="info.limpet.rcp.AnalysisView">
+      </view>
+      <view
+            allowMultiple="true"
+            name="Data Frequency"
+            icon="icons/bar-chart.png"
+            category="info.limpet.rcp"
+            class="info.limpet.rcp.data_frequency.DataFrequencyView"
+            id="info.limpet.rcp.DataFrequencyView">
+      </view>
+      <view
+            allowMultiple="true"
+            name="Time Frequency"
+            icon="icons/time-bar-chart.png"
+            category="info.limpet.rcp"
+            class="info.limpet.rcp.time_frequency.TimeFrequencyView"
+            id="info.limpet.rcp.TimeFrequencyView">
+      </view>
+      <view
+            allowMultiple="true"
+            category="info.limpet.rcp"
+            class="info.limpet.rcp.xy_plot.XyPlotView"
+            icon="icons/line-chart.png"
+            id="info.limpet.rcp.XyPlotView"
+            name="XY Plot">
+      </view>
+      <view
+            allowMultiple="true"
+            category="info.limpet.rcp"
+            class="info.limpet.rcp.range_slider.RangeSliderView"
+            icon="icons/properties.png"
+            id="info.limpet.rcp.RangeSliderView"
+            name="Range Slider">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+   	<editor
+      	name="Data Manager Editor"
+      	extensions="lap"
+      	icon="icons/limpet.png"
+      	class="info.limpet.rcp.editors.DataManagerEditor"
+      	contributorClass="info.limpet.rcp.editors.DataManagerEditorActionBarContributor"
+      	id="info.limpet.rcp.editors.dataManagerEditor">
+   	</editor>
+   </extension>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="info.limpet.rcp.product.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Data Analysis"
+            class="info.limpet.rcp.product.Perspective"
+            icon="icons/limpet.png"
+            id="info.limpet.product.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="info.limpet.rcp.application"
+            name="Limpet" description="Lightweight InforMation ProcEssing Toolkit">
+         	<property name="appName" value="Limpet"/>
+            <property name="introTitle" value="Welcome to Limpet"/>
+            <property name="introBrandingImage" value="product:icons/about.jpg"/>
+            <property name="introBrandingImageText"
+                value="Limpet"/>
+            <property name="aboutImage" value="icons/about.png"/>
+            <property name="windowImages" value="icons/icon.png,icons/48/icon_48.png"/>
+            <property name="startupForegroundColor" value="000000"/>
+            <property name="startupMessageRect" value="0,0,0,0"/>
+            <property name="startupProgressRect" value="0,0,0,0"/>
+            <property name="applicationXMI" value="org.eclipse.platform/LegacyIDE.e4xmi"/>
+            <property name="cssTheme" value="org.eclipse.e4.ui.css.theme.e4_default"/>
+            <property name="applicationCSSResources"
+                value="platform:/plugin/org.eclipse.platform/images/"/>
+            <property name="aboutText" value="%aboutText"> </property>
+         <property
+               name="windowImages"
+               value="icons/limpet.png,icons/alt_window_32.gif">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="org.eclipse.ui.intro.config.CustomizableIntroPart"
+            id="info.limpet.product.intro">
+      </intro>
+      <introProductBinding
+            introId="info.limpet.product.intro"
+            productId="info.limpet.rcp.product">
+      </introProductBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.config">
+      <config
+            introId="info.limpet.product.intro"
+            content="introContent.xml"
+            id="info.limpet.product.configId">
+         <presentation
+               home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx">
+            </implementation>
+         </presentation>
+      </config>
+   </extension>
+   
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+        <perspectiveExtension targetID="info.limpet.product.perspective">
+            <hiddenMenuItem id="bookmark"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.addBookmark"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.addTask"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildAll"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.openProject"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.closeProject"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildProject"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.cleanAction"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildAutomatically"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.properties"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.goInto"/>
+            <hiddenMenuItem id="org.eclipse.search.menu"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.openSearchDialog"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.openFileSearchPage"/>
+            <hiddenMenuItem id="textSearchSubMenu"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchWorkspace"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchProject"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchFile"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchWorkingSet"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.back"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.forward"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.up"/>
+            <hiddenMenuItem id="converstLineDelimitersTo"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.windows"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.unix"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.macOS9"/>
+            <hiddenMenuItem id="project"/>
+            <hiddenMenuItem id="navigate"/>
+            <hiddenToolBarItem id="org.eclipse.debug.ui.commands.RunToLine"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+            <hiddenToolBarItem id="org.eclipse.search.searchActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.search.OpenSearchDialogPage"/>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.back"/>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.forward"/>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.up"/>
+            <hiddenToolBarItem id="org.eclipse.debug.ui.launchActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.ui.NavigateActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.navigate"/>
+            
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.help"/>
+        </perspectiveExtension>
+        <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+            <hiddenMenuItem id="bookmark"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.addBookmark"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.addTask"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildAll"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildProject"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.cleanAction"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.buildAutomatically"/>
+            <hiddenMenuItem id="org.eclipse.ui.project.properties"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.goInto"/>
+            <hiddenMenuItem id="org.eclipse.search.menu"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.openSearchDialog"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.openFileSearchPage"/>
+            <hiddenMenuItem id="textSearchSubMenu"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchWorkspace"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchProject"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchFile"/>
+            <hiddenMenuItem id="org.eclipse.search.ui.performTextSearchWorkingSet"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.back"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.forward"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.up"/>
+            <hiddenMenuItem id="converstLineDelimitersTo"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.windows"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.unix"/>
+            <hiddenMenuItem id="org.eclipse.ui.edit.text.delimiter.macOS9"/>
+            <hiddenMenuItem id="project"/>
+            <hiddenToolBarItem id="org.eclipse.debug.ui.commands.RunToLine"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+            <hiddenToolBarItem id="org.eclipse.search.searchActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.search.OpenSearchDialogPage"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.back"/>
+            <hiddenMenuItem id="org.eclipse.ui.navigate.forward"/>
+            <hiddenToolBarItem id="org.eclipse.ui.navigate.up"/>
+            <hiddenToolBarItem id="org.eclipse.debug.ui.launchActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.ui.NavigateActionSet"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+            <hiddenToolBarItem id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.navigate"/>
+            
+            <hiddenToolBarItem id="org.eclipse.ui.workbench.help"/>
+        </perspectiveExtension>
+    </extension>
+   
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            lightweight="true"
+            adaptable="true"
+            label="Limpet Decorator"
+            class="info.limpet.rcp.decorators.LimpetDecorator"
+            state="true"
+            id="info.limpet.rcp.decorators.LimpetDecorator">
+         <description>
+            Limpet Decorator
+         </description>
+         <enablement>
+            <objectClass
+                  name="info.limpet.rcp.data_provider.data.LimpetWrapper">
+            </objectClass>
+         </enablement>
+      </decorator>
+    </extension>
+   
+</plugin>

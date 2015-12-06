@@ -1,0 +1,19 @@
+language: java
+jdk: oraclejdk7
+sudo: false
+install:
+- mvn --version
+before_script:
+- export DISPLAY=:99
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+script:
+- cd info.limpet.targetplatforms
+- mvn clean install
+- cd ..
+- mvn clean verify -U -B -fae
+- bash ./deploy_ghpages.sh
+env:
+  global:
+  - GH_REF: github.com/pecko/limpet-release.git
+  - secure: vNmGfml21lwxeuUR1DdZwpeDr/2i/ClpkJo00VLSyOhST++PxHEtk5dH5fCPiYbx5egzhzDHokL1rbi2AuWjj8AqvfMAYfMhCoWxk7ipqT67dt2VWJPyaOgscIHar//PSRznvYn+wjF0Kv5B6TOJ3pqTf8lpZ7cwk9TWmnvurDSGH/JS2LUoBtPBsk9GlHK223zT+KT9nD2/rWYY3KTtLceueqK16usLc66kUg/FNInHMHZpl9yPvV0gFRUtnipn5WJPHZFnl2/FdZORg5LsqIxe+VgMGb5DczE+O8bLk4hVhDsEw9ZOjyEAL20NkcOD1Q1AHnchtfV/pIHk2IamRdkwp6pWrTpork/gFZ9oOxYAzxBlvgGolGSZkYXY+pLdV6Iafkkug4VpQgwGGORQswbjf90zJ0gpWxMMhumnKH2UYvCCkaYKopKHspbvesR4HTAOgLY4fdpoUSRhk1ZRAgrEANHPSofVOm44r1N6KPQdfymCbB+Fnijd3cJYpMZFb7J6BQZ4rAI9xwA/wLFr9h2sVzQS1HcG3NlngWEEaV+MYLj1P/N18d/tLzxjNdNNWuYsXpFLjw5sO0/lrd5dg0gMztR+igJPY86uNTOcrDZLrut6RS7eIoJiaK0nCjhGXTCBfHa0JCh2QQiwMAszZ90qdNwCkSA0WnMxliND4wg=
